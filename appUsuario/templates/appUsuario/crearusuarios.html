@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Landing Page - Start Bootstrap Theme</title>
+        <title>Crear Usuario</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -18,16 +18,32 @@
         <link href="{% static 'appUsuario/css/styles.css' %}" rel="stylesheet" />
     </head>
     <body>
+
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="#!"style="font-size:5vw"><b>NUESTRO BLOG</b></a>
+                <a class="navbar-brand" href="#!"style="font-size:3vw">Formulario - Crear Usuario</a>
                 <a class="btn btn-primary" href="#signup">Sign Up</a>
             </div>
         </nav>
         <span style="height:50px;"></span>
         {% block bloque_base %}
+        
         {% endblock bloque_base %}
+        <form action="/crearusuarios.html/" method=POST style=" width: 50vw; margin-left : 5vw;">
+
+            <p>Nombre: <input type="text" name="nombre"></p>
+            <p>Apellido: <input type="text" name="apellido"></p>
+            <p>Email: <input type="text" name="email"></p>
+            
+
+            <input type="submit" value="Enviar">
+
+        </form> 
+
+
+        
+     
 
         <footer class="footer bg-light">
             <div class="container">
@@ -42,7 +58,7 @@
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
                         </ul>
-                        <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2021. All Rights Reserved.</p>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; Blog_1 2021. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
@@ -69,5 +85,7 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+        
     </body>
 </html>
