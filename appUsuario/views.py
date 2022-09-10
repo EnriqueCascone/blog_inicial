@@ -33,3 +33,6 @@ def crear_usuario(request):
     else: 
         formulario = UsuarioFormulario()  
     return render(request, "appUsuario/form_usuarios.html", {"formulario": formulario})
+
+def busquedaUsuario(request):
+    return render(request, 'appUsuario/contacto.html')
