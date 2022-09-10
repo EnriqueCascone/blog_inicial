@@ -7,9 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Landing Page - Start Bootstrap Theme</title>
+        <title>MotoBlog</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="{% static 'appUsuario/assets/favicon.ico'%}" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
         <!-- Google fonts-->
@@ -21,8 +21,14 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="#!"style="font-size:5vw"><b>NUESTRO BLOG</b></a>
-                <a class="btn btn-primary" href="#signup">Sign Up</a>
+                <!-- <a class="navbar-brand" href="#!"style="font-size:5vw"><b>NUESTRO BLOG</b></a> -->
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'appUsuario/assets/img/logo_moto.png' %}" width="70" height="70" class="d-inline-block align-top" alt="">
+                <a class="navbar-brand" href="{% url 'crear_usuario' %}"><b>Crear Usuario</b></a>
+                <a class="navbar-brand" href="{% url 'busquedaUsuario' %}"><b>Buscar Usuario</b></a>
+                <a class="navbar-brand" href="{% url 'crear_post' %}"><b>Publicar</b></a>
+                <a class="navbar-brand" href="{% url 'contacto' %}"><b>Contacto</b></a>
+                <!-- <a class="btn btn-primary" href="#signup">Sign Up</a> -->
             </div>
         </nav>
         <span style="height:50px;"></span>

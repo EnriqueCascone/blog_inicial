@@ -3,7 +3,7 @@ from urllib import request
 from django.shortcuts import render, HttpResponse, redirect, reverse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from appUsuario.forms import UsuarioFormulario
+from appUsuario.forms import UsuarioFormulario, ArticuloFormulario, NewsletterFormulario
 from appUsuario.models import Usuario, Articulo, Newsletter
 
 def inicio(request):
@@ -14,13 +14,13 @@ def usuarios(request):
     return render(request, "appUsuario/usuarios.html", {'usuarios': usuarios})
     
 def crear_post(request):
-    return render(request, 'appUsuario/crear_post.html')
+    return render(request, 'appUsuario/crear_post_form.html')
 
 def posteos(request):
     return render(request, 'appUsuario/posteos.html')
 
 def contacto(request):
-    return render(request, 'appUsuario/contacto.html')
+    return render(request, 'appUsuario/contacto_form.html')
 
 def crear_usuario(request):
     if request.method == 'POST':
@@ -46,9 +46,31 @@ def buscar_usuario(request):
         return render(request, "appUsuario/usuarios.html", {'usuarios': usuarios})
     else: 
         return render(request, "appUsuario/usuarios.html", {'usuarios': []})
-        
-        
-    
-        
 
-    
+
+#Desde el formulario de publicacion
+def crear_post(request):
+    if request.method == 'POST':
+        formulario = ArticuloFormulario(request.POST)
+        if formulario.is_valid(): #Se corrobora que el formulario sea válido según los datos de forms.py
+            data = formulario.cleaned_data
+            articulo = Articulo(titulo = data["titulo"], fecha_publicada=data["fecha_publicada"],texto=data["texto"])
+            articulo.save()
+            return render(request, 'appUsuario/index.html',{"exitoart": True})
+    else:
+        formulario = ArticuloFormulario()
+    return render(request,'appUsuario/crear_post_form.html',{"formulario": formulario})
+
+
+#Desde el formulario de Contacto
+def suscripcion_newsletter(request): 
+    if request.method =="POST":
+        formulario = NewsletterFormulario(request.POST)
+        if formulario.is_valid():
+            data= formulario.cleaned_data
+            newsletter = Newsletter(nombre=data["nombre"],apellido=data["apellido"],email=data["email"],contacto=data["contacto"])
+            newsletter.save()
+            return render(request,'appUsuario/index.html',{"exitonew": True})
+        else:
+            formulario=NewsletterFormulario()
+        return render(request, 'appUsuario/contacto_form.html',{"formulario": formulario})

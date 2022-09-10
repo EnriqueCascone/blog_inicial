@@ -1,9 +1,14 @@
 {%extends "appUsuario/template_basico.html"%}
 
 {%block bloque_base%}
-<a class="navbar-brand" href="{% url 'crear_usuario' %}"><b>Crear Usuario</b></a>
-<a class="navbar-brand" href="#!"><b>Publicar</b></a>
-<a class="navbar-brand" href="#!"><b>Newsletter</b></a>
+
+{%if exitoart%}
+<div style = "background-color: aquamarine;"> Tu post fué guardado!! </div>
+{%endif%}
+
+{%if exitonew%}
+<div style = "background-color:lightcoral;"> Tu post fué guardado!! </div>
+{%endif%}
 
 <h2>Inicio </h2>
 {%endblock bloque_base%}
