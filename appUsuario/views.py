@@ -10,8 +10,9 @@ def inicio(request):
     return render(request, 'appUsuario/index.html')
 
 def usuarios(request):
-    return render(request, 'appUsuario/usuarios.html')
-
+    usuarios = Usuario.objects.all()
+    return render(request, "appUsuario/usuarios.html", {'usuarios': usuarios})
+    
 def crear_post(request):
     return render(request, 'appUsuario/crear_post.html')
 
@@ -34,5 +35,20 @@ def crear_usuario(request):
         formulario = UsuarioFormulario()  
     return render(request, "appUsuario/form_usuarios.html", {"formulario": formulario})
 
+
 def busquedaUsuario(request):
-    return render(request, 'appUsuario/contacto.html')
+    return render(request, 'appUsuario/busquedaUsuario.html')
+
+def buscar_usuario(request):
+    if request.GET["nombre"]:
+        nombre = request.GET["nombre"]
+        usuarios = Usuario.objects.filter(nombre__icontains=nombre)
+        return render(request, "appUsuario/usuarios.html", {'usuarios': usuarios})
+    else: 
+        return render(request, "appUsuario/usuarios.html", {'usuarios': []})
+        
+        
+    
+        
+
+    

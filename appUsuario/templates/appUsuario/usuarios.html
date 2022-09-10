@@ -1,0 +1,48 @@
+{%extends "appUsuario/template_basico.html"%}
+
+{% block style_block %}
+<style>
+  table.coder-table {
+    border:3px solid;
+  }
+  th,
+  td {
+    border:1px solid;
+    padding:5px 10px;
+  }
+</style>
+{% endblock style_block %}
+
+{%block bloque_base%}
+
+<h1>usuarios</h1>
+<a href="{% url 'crear_usuario' %}">Crear usuario!</a>
+<br>
+
+<h3>Usuarios:</h3>
+
+<table class="coder-table">
+  <tbody>
+    <tr>
+      <th>
+        <p id="p0"> <strong>Nombre</strong></p> 
+      </th>
+      <th>
+        <p id="p1"> <strong>Apellido</strong></p>
+      </th>
+      <th>
+        <p id="p2"> <strong>Email</strong></p>
+      </th>
+    </tr>
+    {% for usuario in usuarios %}
+    <tr>
+      <td>{{usuario.nombre}}</td>
+      <td>{{usuario.apellido}}</td>
+      <td>{{usuario.email}}</td>
+      
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{%endblock bloque_base%}

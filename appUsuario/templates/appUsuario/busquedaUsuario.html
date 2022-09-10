@@ -1,0 +1,11 @@
+{% extends "appUsuario/template_basico.html" %}
+
+{% block bloque_base %}
+<form action="{% url 'buscar_usuario' %}" method="GET">
+    {% csrf_token %}
+    <span>Nombre:
+      <input type="text" name="nombre">
+    </span>
+    <input type="submit" value="Buscar" />
+  </form>
+{% endblock bloque_base %}
