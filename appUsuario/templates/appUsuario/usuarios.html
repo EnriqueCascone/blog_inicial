@@ -3,10 +3,9 @@
 {% block style_block %}
 <style>
   table.coder-table {
-    border:3px solid;
+    border: 2px solid green;
   }
-  th,
-  td {
+  th,td {
     border:1px solid;
     padding:5px 10px;
   }
@@ -15,11 +14,7 @@
 
 {%block bloque_base%}
 
-<h1>usuarios</h1>
-<a href="{% url 'crear_usuario' %}">Crear usuario!</a>
-<br>
-
-<h3>Usuarios:</h3>
+<h1>Usuarios:</h1>
 
 <table class="coder-table">
   <tbody>

@@ -1,5 +1,28 @@
 {% extends "appUsuario/template_basico.html" %}
 
+{% block style_block %}
+<style>
+  form{
+    margin: 50px 30px 0px;
+  }
+  table.coder-table {
+    border: 2px solid green;
+    align-items: center;
+  }
+  th,td {
+    border: 3px solid green;
+    padding:5px 10px;
+    text-align: center;
+  }
+  .mostrar-tabla{
+    margin: 10px 100px;
+    display:flex;
+    
+  }
+</style>
+{% endblock style_block %}
+
+
 {% block bloque_base %}
 <form action="{% url 'buscar_usuario' %}" method="GET">
     {% csrf_token %}
@@ -8,4 +31,29 @@
     </span>
     <input type="submit" value="Buscar" />
   </form>
+
+  <div class="mostrar-tabla">
+    <table class="coder-table">
+      <tbody>
+        <tr>
+          <th>
+            <p id="p0"> <strong>Nombre</strong></p> 
+          </th>
+          <th>
+            <p id="p1"> <strong>Apellido</strong></p>
+          </th>
+          <th>
+            <p id="p2"> <strong>Email</strong></p>
+          </th>
+        </tr>
+        {% for usuario in usuarios %}
+        <tr>
+          <td>{{usuario.nombre}}</td>
+          <td>{{usuario.apellido}}</td>
+          <td>{{usuario.email}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 {% endblock bloque_base %}

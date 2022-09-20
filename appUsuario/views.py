@@ -37,7 +37,8 @@ def crear_usuario(request):
 
 
 def busquedaUsuario(request):
-    return render(request, 'appUsuario/busquedaUsuario.html')
+    usuarios = Usuario.objects.all()
+    return render(request, 'appUsuario/busquedaUsuario.html', {"usuarios": usuarios})
 
 def buscar_usuario(request):
     if request.GET["nombre"]:
