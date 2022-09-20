@@ -1,3 +1,6 @@
+<!-- NO SE UTILIZA MOMENTANEAMENTE -->
+
+
 {%extends "appUsuario/template_basico.html"%}
 
 {% block style_block %}
@@ -16,28 +19,32 @@
 
 <h1>Usuarios:</h1>
 
-<table class="coder-table">
-  <tbody>
-    <tr>
-      <th>
-        <p id="p0"> <strong>Nombre</strong></p> 
-      </th>
-      <th>
-        <p id="p1"> <strong>Apellido</strong></p>
-      </th>
-      <th>
-        <p id="p2"> <strong>Email</strong></p>
-      </th>
-    </tr>
-    {% for usuario in usuarios %}
-    <tr>
-      <td>{{usuario.nombre}}</td>
-      <td>{{usuario.apellido}}</td>
-      <td>{{usuario.email}}</td>
-      
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+{%if usuario%}
+  <table class="coder-table">
+    <tbody>
+      <tr>
+        <th>
+          <p id="p0"> <strong>Nombre</strong></p> 
+        </th>
+        <th>
+          <p id="p1"> <strong>Apellido</strong></p>
+        </th>
+        <th>
+          <p id="p2"> <strong>Email</strong></p>
+        </th>
+      </tr>
+      {% for usuario in usuarios %}
+      <tr>
+        <td>{{usuario.nombre}}</td>
+        <td>{{usuario.apellido}}</td>
+        <td>{{usuario.email}}</td>
+        
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{%else%}
+<h3>No hay usuarios!</h3>
+{%endif%}
 
 {%endblock bloque_base%}

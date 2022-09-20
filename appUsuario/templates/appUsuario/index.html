@@ -1,4 +1,22 @@
 {%extends "appUsuario/template_basico.html"%}
+{% block style_block %}
+<style>
+.mostrar-tabla{
+    margin: 35px;
+}
+tr,td{
+    border: 1px solid green;
+    padding: 5px;
+}
+th{
+    border:2px solid green;
+    padding: 5px;
+}
+h3{
+    color:darkgreen;
+}
+</style>
+{% endblock style_block %}
 
 {%block bloque_base%}
 
@@ -11,4 +29,39 @@
 {%endif%}
 
 <h2>Inicio </h2>
+{%if articulos%}
+<div class="mostrar-tabla">
+    <table class="coder-table">
+        <tbody>
+            <tr>
+                <th>
+                    Titulo:
+                </th>
+                <th>
+                    Fecha:
+                </th>
+                <th>
+                    Texto:
+                </th>
+            </tr>
+            {%for articulo in articulos%}
+                <tr>
+                    <td>
+                        {{articulo.titulo}}
+                    </td>
+                    <td>
+                        {{articulo.fecha_publicada|date:"SHORT_DATE_FORMAT"}}
+                    </td>
+                    <td>
+                        {{articulo.texto}}
+                    </td>
+                </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</div>
+{%else%}
+<h3>No hay articulos!!</h2>
+{%endif%}
+
 {%endblock bloque_base%}

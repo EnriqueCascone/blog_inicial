@@ -1,11 +1,36 @@
 {%extends "appUsuario/template_basico.html"%}
 
+{% block style_block %}
+<style>
+.boton{
+    text-decoration: none;
+    padding: 5px;
+    border: 2px solid green;
+    margin: 20px 50px;
+    color: black;
+    font-size:medium;
+}
+.boton :hover{
+    color:darkgreen;
+    font-size: large;
+    padding: 5px;
+    text-decoration: none;
+}
+</style>
+{% endblock style_block %}
+
 {% block bloque_base %}
+
+{%if exitoart%}
+<div style = "background-color: aquamarine;"> Tu post fué guardado!! </div>
+<br>
+<a class="boton" href="{% url 'inicio' %}"><b>Volver al inicio</b></a>
+{%else%}
 <form method="post" style=" width: 50vw; margin-left : 5vw;">
     {% csrf_token %} 
     {{ formulario.as_p }}
     
     <input type="submit" value="Crear Post"/>
 </form> 
-
+{%endif%}
 {% endblock bloque_base %}

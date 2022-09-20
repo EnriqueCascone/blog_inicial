@@ -17,20 +17,34 @@
   .mostrar-tabla{
     margin: 10px 100px;
     display:flex;
-    
+  }
+  .boton{
+    text-decoration: none;
+    padding: 5px;
+    border: 2px solid green;
+    margin: 10px 150px;
+    color: black;
+    font-size:medium;
+  }
+  .boton :hover{
+    color:darkgreen;
+    font-size: large;
+    padding: 5px;
+    text-decoration: none;
   }
 </style>
 {% endblock style_block %}
 
 
 {% block bloque_base %}
+{%if usuarios%}
 <form action="{% url 'buscar_usuario' %}" method="GET">
     {% csrf_token %}
     <span>Nombre:
       <input type="text" name="nombre">
     </span>
     <input type="submit" value="Buscar" />
-  </form>
+</form>
 
   <div class="mostrar-tabla">
     <table class="coder-table">
@@ -56,4 +70,10 @@
       </tbody>
     </table>
   </div>
+  <a class="boton" href="{% url 'busquedaUsuario' %}"><b>Volver a buscar</b></a>
+{%else%}
+<h3>No hay usuarios!</h3>
+<a class="boton" href="{% url 'crear_usuario' %}"><b>Pulsa para crear</b></a>
+{%endif%}
+
 {% endblock bloque_base %}
