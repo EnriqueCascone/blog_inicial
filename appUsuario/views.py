@@ -7,7 +7,9 @@ from appUsuario.forms import UsuarioFormulario, ArticuloFormulario, NewsletterFo
 from appUsuario.models import Usuario, Articulo, Newsletter
 
 def inicio(request):
-    return render(request, 'appUsuario/index.html')
+    articulos = Articulo.objects.all()
+    return render(request, 'appUsuario/index.html',{"articulos": articulos})
+    # return render(request, 'appUsuario/index.html')
 
 def usuarios(request):
     usuarios = Usuario.objects.all()
@@ -44,9 +46,9 @@ def buscar_usuario(request):
     if request.GET["nombre"]:
         nombre = request.GET["nombre"]
         usuarios = Usuario.objects.filter(nombre__icontains=nombre)
-        return render(request, "appUsuario/usuarios.html", {'usuarios': usuarios})
+        return render(request, "appUsuario/busquedaUsuario.html", {'usuarios': usuarios})
     else: 
-        return render(request, "appUsuario/usuarios.html", {'usuarios': []})
+        return render(request, "appUsuario/busquedaUsuario.html", {'usuarios': []})
 
 
 #Desde el formulario de publicacion
@@ -57,7 +59,7 @@ def crear_post(request):
             data = formulario.cleaned_data
             articulo = Articulo(titulo = data["titulo"], fecha_publicada=data["fecha_publicada"],texto=data["texto"])
             articulo.save()
-            return render(request, 'appUsuario/index.html',{"exitoart": True})
+            return render(request, 'appUsuario/crear_post_form.html',{"exitoart": True})
     else:
         formulario = ArticuloFormulario()
     return render(request,'appUsuario/crear_post_form.html',{"formulario": formulario})
