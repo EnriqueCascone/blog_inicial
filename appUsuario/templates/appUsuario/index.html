@@ -7,13 +7,24 @@
 tr,td{
     border: 1px solid green;
     padding: 5px;
+    text-align: center;
 }
 th{
     border:2px solid green;
     padding: 5px;
+    text-align: center;
 }
 h3{
     color:darkgreen;
+}
+.btn-acciones-articulos{
+    border: 1px solid #2e518b; /*anchura, estilo y color borde*/
+    padding: 3px; /*espacio alrededor texto*/
+    background-color: #2e518b; /*color botón*/
+    color: #ffffff; /*color texto*/
+    text-decoration: none; /*decoración texto*/
+    text-transform: capitalize; /*capitalización texto*/;
+    border-radius: 20px; /*bordes redondos*/
 }
 </style>
 {% endblock style_block %}
@@ -26,6 +37,10 @@ h3{
 
 {%if exitonew%}
 <div style = "background-color:lightcoral;"> Tu post fué guardado!! </div>
+{%endif%}
+
+{%if borrado%}
+<div style = "background-color: orange ;"> Fue borrado exitosamente el articulo ID:{{borrado}}" </div>
 {%endif%}
 
 <h2>Inicio </h2>
@@ -43,6 +58,9 @@ h3{
                 <th>
                     Texto:
                 </th>
+                <th colspan="2">
+                    Acciones
+                </th>
             </tr>
             {%for articulo in articulos%}
                 <tr>
@@ -55,6 +73,8 @@ h3{
                     <td>
                         {{articulo.texto}}
                     </td>
+                    <td><a class="btn-acciones-articulos" href="">Editar</a></td>
+                    <td><a class="btn-acciones-articulos" href="{% url 'eliminar_articulo' articulo.id %}">Eliminar</a></td>
                 </tr>
             {%endfor%}
         </tbody>

@@ -8,7 +8,10 @@ from appUsuario.models import Usuario, Articulo, Newsletter
 
 def inicio(request):
     articulos = Articulo.objects.all()
-    return render(request, 'appUsuario/index.html',{"articulos": articulos})
+    contexto = {"articulos": articulos}
+    borrado = request.GET.get('borrado', None)
+    contexto['borrado'] = borrado
+    return render(request, 'appUsuario/index.html', contexto)
     # return render(request, 'appUsuario/index.html')
 
 def usuarios(request):
@@ -77,3 +80,10 @@ def suscripcion_newsletter(request):
         else:
             formulario=NewsletterFormulario()
         return render(request, 'appUsuario/contacto_form.html',{"formulario": formulario})
+
+def eliminarArticulo(request, id):
+    articulo = Articulo.objects.get(id=id)
+    borrado_id = articulo.id
+    articulo.delete()
+    url = f"{reverse('inicio')}?borrado={borrado_id}" #Es como usar la etiqueta de URL en el html
+    return redirect(url)
