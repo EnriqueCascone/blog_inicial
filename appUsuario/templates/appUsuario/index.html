@@ -8,6 +8,7 @@ tr,td{
     border: 1px solid green;
     padding: 5px;
     text-align: center;
+    width: 100%;
 }
 th{
     border:2px solid green;
@@ -25,6 +26,26 @@ h3{
     text-decoration: none; /*decoración texto*/
     text-transform: capitalize; /*capitalización texto*/;
     border-radius: 20px; /*bordes redondos*/
+}
+.titulo{
+    width: 10%;
+    height: auto;
+}
+.fecha{
+    width: 10%;
+    height: auto;
+}
+.texto{
+    width: 60%;
+    height: auto;
+}
+.acciones{
+    width: 20;
+    height: auto;
+}
+.td-btn-acciones{
+    width: 10%;
+    height: auto;
 }
 </style>
 {% endblock style_block %}
@@ -49,32 +70,32 @@ h3{
     <table class="coder-table">
         <tbody>
             <tr>
-                <th>
+                <th class="titulo">
                     Titulo:
                 </th>
-                <th>
+                <th class="fecha">
                     Fecha:
                 </th>
-                <th>
+                <th class="texto">
                     Texto:
-                </th>
+                </th class="acciones">
                 <th colspan="2">
                     Acciones
                 </th>
             </tr>
             {%for articulo in articulos%}
                 <tr>
-                    <td>
+                    <td class="titulo">
                         {{articulo.titulo}}
                     </td>
-                    <td>
+                    <td class="fecha">
                         {{articulo.fecha_publicada|date:"SHORT_DATE_FORMAT"}}
                     </td>
-                    <td>
+                    <td class="texto">
                         {{articulo.texto}}
                     </td>
-                    <td><a class="btn-acciones-articulos" href="">Editar</a></td>
-                    <td><a class="btn-acciones-articulos" href="{% url 'eliminar_articulo' articulo.id %}">Eliminar</a></td>
+                    <td class="td-btn-acciones"><a class="btn-acciones-articulos" href="">Editar</a></td>
+                    <td class="td-btn-acciones"><a class="btn-acciones-articulos" href="{% url 'eliminar_articulo' articulo.id %}">Eliminar</a></td>
                 </tr>
             {%endfor%}
         </tbody>
