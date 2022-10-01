@@ -87,3 +87,23 @@ def eliminarArticulo(request, id):
     articulo.delete()
     url = f"{reverse('inicio')}?borrado={borrado_id}" #Es como usar la etiqueta de URL en el html
     return redirect(url)
+
+def editar_articulo(request, id):
+    articulo = Articulo.objects.get(id=id)
+    if request.method == 'POST':
+        formulario = ArticuloFormulario(request.POST)
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            articulo.titulo = data['titulo']
+            articulo.fecha_publicada = data['fecha_publicada']
+            articulo.texto = data['texto']
+            articulo.save()
+            return redirect(reverse('inicio'))
+    else:
+        inicial = {
+            'titulo':articulo.titulo,
+            'fecha_publicada': articulo.fecha_publicada,
+            'texto': articulo.texto,
+        }
+        formulario = ArticuloFormulario(initial=inicial)
+    return render(request,'appUsuario/crear_post_form.html',{"formulario": formulario})
