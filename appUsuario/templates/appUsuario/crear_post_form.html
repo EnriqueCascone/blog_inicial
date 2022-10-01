@@ -25,12 +25,13 @@
 <div style = "background-color: aquamarine;"> Tu post fué guardado!! </div>
 <br>
 <a class="boton" href="{% url 'inicio' %}"><b>Volver al inicio</b></a>
+<a class="boton" href="{% url 'crear_post' %}"><b>Crear un nuevo post</b></a>
 {%else%}
 <form method="post" style=" width: 50vw; margin-left : 5vw;">
     {% csrf_token %} 
     {{ formulario.as_p }}
     
-    <input type="submit" value="Crear Post"/>
+    <input type="submit" value="Enviar"/>
 </form> 
 {%endif%}
 {% endblock bloque_base %}

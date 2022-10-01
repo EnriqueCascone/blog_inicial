@@ -10,4 +10,6 @@ path('posteos/', views.posteos, name="posteos"),
 path('contacto/', views.contacto, name="contacto"),
 path('busquedaUsuario/', views.busquedaUsuario, name="busquedaUsuario"),
 path('buscar_usuario/', views.buscar_usuario, name="buscar_usuario"),
+path('eliminar_articulo/<int:id>', views.eliminarArticulo, name="eliminar_articulo"),
+path('editar_articulo/<int:id>', views.editar_articulo, name="editar_articulo"),
 ]

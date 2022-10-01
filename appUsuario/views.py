@@ -8,7 +8,10 @@ from appUsuario.models import Usuario, Articulo, Newsletter
 
 def inicio(request):
     articulos = Articulo.objects.all()
-    return render(request, 'appUsuario/index.html',{"articulos": articulos})
+    contexto = {"articulos": articulos}
+    borrado = request.GET.get('borrado', None)
+    contexto['borrado'] = borrado
+    return render(request, 'appUsuario/index.html', contexto)
     # return render(request, 'appUsuario/index.html')
 
 def usuarios(request):
@@ -77,3 +80,30 @@ def suscripcion_newsletter(request):
         else:
             formulario=NewsletterFormulario()
         return render(request, 'appUsuario/contacto_form.html',{"formulario": formulario})
+
+def eliminarArticulo(request, id):
+    articulo = Articulo.objects.get(id=id)
+    borrado_id = articulo.id
+    articulo.delete()
+    url = f"{reverse('inicio')}?borrado={borrado_id}" #Es como usar la etiqueta de URL en el html
+    return redirect(url)
+
+def editar_articulo(request, id):
+    articulo = Articulo.objects.get(id=id)
+    if request.method == 'POST':
+        formulario = ArticuloFormulario(request.POST)
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            articulo.titulo = data['titulo']
+            articulo.fecha_publicada = data['fecha_publicada']
+            articulo.texto = data['texto']
+            articulo.save()
+            return redirect(reverse('inicio'))
+    else:
+        inicial = {
+            'titulo':articulo.titulo,
+            'fecha_publicada': articulo.fecha_publicada,
+            'texto': articulo.texto,
+        }
+        formulario = ArticuloFormulario(initial=inicial)
+    return render(request,'appUsuario/crear_post_form.html',{"formulario": formulario})
