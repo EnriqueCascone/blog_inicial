@@ -13,7 +13,6 @@ class Articulo(models.Model):
     titulo = models.CharField(max_length=64)
     fecha_publicada = models.DateField()
     texto = models.TextField(max_length=1000)
-    imagen = models.ImageField(upload_to='imagenArticulo', null=True, blank = True)
     def __str__(self):
         return f'{self.fecha_publicada} - {self.titulo}'
 

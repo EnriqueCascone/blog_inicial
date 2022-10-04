@@ -94,8 +94,15 @@ h3{
                     <td class="texto">
                         {{articulo.texto}}
                     </td>
-                    <td class="td-btn-acciones"><a class="btn-acciones-articulos" href="{%url 'editar_articulo' articulo.id %}">Editar</a></td>
-                    <td class="td-btn-acciones"><a class="btn-acciones-articulos" href="{% url 'eliminar_articulo' articulo.id %}">Eliminar</a></td>
+                    <td class="image">
+                        {{articulo.image}}
+                    </td>
+                    {% if user.is_staff %}
+                    <td><a class="btn-acciones-articulos" href="{%url 'editar_articulo' articulo.id %}">Editar</a>
+                    <a class="btn-acciones-articulos" href="{% url 'eliminar_articulo' articulo.id %}">Eliminar</a></td>
+                    {%else%}
+                    <td><a class="btn-acciones-articulos" href="{% url 'Login'%}">Log In</a></td>
+                    {% endif%}
                     <td class="td-btn-acciones"><a class="btn-acciones-articulos" href="{% url 'ver_articulo' articulo.id %}">Ver</a></td>
                 </tr>
             {%endfor%}
