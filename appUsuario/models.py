@@ -1,3 +1,4 @@
+from email.mime import image
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -12,6 +13,7 @@ class Articulo(models.Model):
     titulo = models.CharField(max_length=64)
     fecha_publicada = models.DateField()
     texto = models.TextField(max_length=1000)
+    imagen=models.ImageField
     def __str__(self):
         return f'{self.fecha_publicada} - {self.titulo}'
 
