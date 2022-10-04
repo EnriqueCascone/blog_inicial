@@ -118,27 +118,23 @@ def editar_articulo(request, id):
 
 def ver_articulo(request, id):
     articulo = Articulo.objects.get(id=id)
-  
     return render(request,'appUsuario/ver_articulo.html',{"Publicacion": articulo}) 
 
 #LOGIN, LOGOUT Y MAS // Por hacer: que muestre los mensajes y redirija a la principal correctamente ERIK 
 def login_request(request):
+    next_url = request.GET.get('next')
     if request.method == "POST":
         form = AuthenticationForm (request, data = request.POST)
-
         if form.is_valid():
             usuario = form.cleaned_data.get("username")
             contraseña = form.cleaned_data.get("password")
-
             user = authenticate(username=usuario, password=contraseña)
-
-            if user is not None:
+            if user:
                 login(request, user)
-
+                if next_url:
+                    return redirect(next_url)
                 return render(request, 'appUsuario/index.html', {"mensaje":f"Bienvenido {usuario}"})
-            
             else:
-
                 return render(request, 'appUsuario/index.html', {"mensaje": "Error datos incorrectos"})
 
         else:
@@ -164,7 +160,9 @@ def register(request): #Por hacer: que muestre los mensajes y redirija a la prin
 
 class CustomLogoutView(LogoutView):
     template_name = 'appUsuario/logout.html'
-    next_page = reverse_lazy('inicio')
+    next_page = reverse_lazy('logout')
 
+def nosotros(request):
+    return render(request, 'appUsuario/nosotros.html')
 
 

@@ -33,10 +33,19 @@
                 <a class="navbar-brand" href="{% url 'busquedaUsuario' %}"><b>Buscar Usuario</b></a>
                 <a class="navbar-brand" href="{% url 'crear_post' %}"><b>Publicar</b></a>
                 <a class="navbar-brand" href="{% url 'contacto' %}"><b>Contacto</b></a>
-                <!-- <a class="btn btn-primary" href="#signup">Sign Up</a> -->
+                <a class="navbar-brand" href="{% url 'nosotros' %}"><b>Nosotros</b></a>
+                {% if user.is_authenticated %}
+                <a class="btn btn-secondary" href="{% url 'logout'%}">Log Out</a>
+                {%else%}
+                <a class="btn btn-primary" href="{% url 'Login'%}">Log In</a>
+                <a class="btn btn-primary" href="{% url 'Registro'%}">Registrarse</a>
+                {%endif%}
             </div>
         </nav>
         <span style="height:50px;"></span>
+        {% if mensaje %}
+        <span style="background-color: lightgreen;">{{mensaje}}</span>
+        {% endif %}
         {% block bloque_base %}
         {% endblock bloque_base %}
 

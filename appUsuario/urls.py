@@ -17,5 +17,6 @@ path('editar_articulo/<int:id>', views.editar_articulo, name="editar_articulo"),
 path('ver_articulo/<int:id>', views.ver_articulo, name="ver_articulo"),
 path('login/', views.login_request, name="Login"),
 path('register/', views.register, name="Registro"),
-path('logout/', views.CustomLogoutView.as_view(), name="Registro"),
+path('logout/', views.CustomLogoutView.as_view(), name="logout"),
+path('nosotros/',views.nosotros, name="nosotros")
 ]
