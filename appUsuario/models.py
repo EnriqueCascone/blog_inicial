@@ -22,3 +22,11 @@ class Newsletter(models.Model):
     contacto = models.BooleanField()
     def __str__(self):
         return f'{self.apellido}, {self.nombre}. Quiere suscribirse? {self.contacto}'
+
+
+class Avatar(models.Model):
+    user = models.OneToOneField(Usuario, on_delete=models.CASCADE, null=True)
+    imagen = models.ImageField(upload_to='avatares', null=True, blank = True)
+
+    def __str__(self):
+        return f"Imagen de: {self.user}"
