@@ -2,12 +2,12 @@ from email.mime import image
 from django.db import models
 from django.contrib.auth.models import User
 
-class Moto(models.Model):
-    marca = models.CharField(max_length=128)
-    modelo = models.CharField(max_length=128)
-    cilindrada = models.IntegerField()
+class Usuario(models.Model):
+    nombre = models.CharField(max_length=128)
+    apellido = models.CharField(max_length=128)
+    email = models.EmailField()
     def __str__(self):
-        return f'{self.marca}, {self.modelo}'
+        return f'{self.apellido}, {self.nombre}'
 
 class Articulo(models.Model):
     titulo = models.CharField(max_length=64)
