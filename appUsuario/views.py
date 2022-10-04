@@ -63,6 +63,7 @@ def buscar_usuario(request):
 
 
 #Desde el formulario de publicacion
+@login_required
 def crear_post(request):
     if request.method == 'POST':
         formulario = ArticuloFormulario(request.POST)
@@ -89,6 +90,7 @@ def suscripcion_newsletter(request):
             formulario=NewsletterFormulario()
         return render(request, 'appUsuario/contacto_form.html',{"formulario": formulario})
 
+@login_required
 def eliminarArticulo(request, id):
     articulo = Articulo.objects.get(id=id)
     borrado_id = articulo.id
@@ -96,6 +98,7 @@ def eliminarArticulo(request, id):
     url = f"{reverse('inicio')}?borrado={borrado_id}" #Es como usar la etiqueta de URL en el html
     return redirect(url)
 
+@login_required
 def editar_articulo(request, id):
     articulo = Articulo.objects.get(id=id)
     if request.method == 'POST':
