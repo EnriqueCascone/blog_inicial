@@ -11,10 +11,8 @@ class Usuario(models.Model):
 
 class Articulo(models.Model):
     titulo = models.CharField(max_length=64)
-    subtitulo = models.CharField(max_length=64)
     fecha_publicada = models.DateField()
     texto = models.TextField(max_length=1000)
-    usuario = User.first_name
     def __str__(self):
         return f'{self.fecha_publicada} - {self.titulo}'
 
@@ -32,4 +30,4 @@ class Avatar(models.Model):
     imagen = models.ImageField(upload_to='avatares', null=True, blank = True)
 
     def __str__(self):
-        return f"Imagen de: {self.user}"    
+        return f"Imagen de: {self.user}"
