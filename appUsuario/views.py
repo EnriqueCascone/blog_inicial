@@ -163,6 +163,6 @@ class CustomLogoutView(LogoutView):
     next_page = reverse_lazy('logout')
 
 def nosotros(request):
-    return render(request, 'appUsuario/nosotros.html')
+    return render(request, 'appUsuario/about.html')
 
 
