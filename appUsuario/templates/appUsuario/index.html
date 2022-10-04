@@ -96,6 +96,7 @@ h3{
                     </td>
                     <td class="td-btn-acciones"><a class="btn-acciones-articulos" href="{%url 'editar_articulo' articulo.id %}">Editar</a></td>
                     <td class="td-btn-acciones"><a class="btn-acciones-articulos" href="{% url 'eliminar_articulo' articulo.id %}">Eliminar</a></td>
+                    <td class="td-btn-acciones"><a class="btn-acciones-articulos" href="{% url 'ver_articulo' articulo.id %}">Ver</a></td>
                 </tr>
             {%endfor%}
         </tbody>
