@@ -13,6 +13,9 @@ class Articulo(models.Model):
     titulo = models.CharField(max_length=64)
     fecha_publicada = models.DateField()
     texto = models.TextField(max_length=1000)
+    imagen = models.ImageField(upload_to='imagenesArticulos', null=True, blank = True)
+    def __str__(self):
+        return f"Imagen de: {self.articulo}"   
     def __str__(self):
         return f'{self.fecha_publicada} - {self.titulo}'
 
@@ -33,7 +36,7 @@ class Avatar(models.Model):
         return f"Imagen de: {self.user}"    
 
 class ImagenArticulo(models.Model):
-    articulo = models.OneToOneField(Articulo, on_delete=models.CASCADE, null=True)
+    articulo= models.OneToOneField(Articulo, on_delete=models.CASCADE, null=True)
     imagen = models.ImageField(upload_to='imagenesArticulos', null=True, blank = True)
     def __str__(self):
         return f"Imagen de: {self.articulo}"   
