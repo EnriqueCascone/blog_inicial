@@ -1,6 +1,90 @@
 {%extends "appUsuario/template_basico.html"%}
-{% block bloque_base %}
-<h1>Articulo: git commit -m "resumen del commit"</h1>
-{% endblock bloque_base %}
+{% block style_block %}
+<style>
+.mostrar-tabla{
+    margin: 35px;
+}
+tr,td{
+    border: 1px solid green;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+}
+th{
+    border:2px solid green;
+    padding: 5px;
+    text-align: center;
+}
+h3{
+    color:darkgreen;
+}
+.btn-acciones-articulos{
+    border: 1px solid #2e518b; /*anchura, estilo y color borde*/
+    padding: 3px; /*espacio alrededor texto*/
+    background-color: #2e518b; /*color botón*/
+    color: #ffffff; /*color texto*/
+    text-decoration: none; /*decoración texto*/
+    text-transform: capitalize; /*capitalización texto*/;
+    border-radius: 20px; /*bordes redondos*/
+}
+.titulo{
+    width: 10%;
+    height: auto;
+}
+.fecha{
+    width: 10%;
+    height: auto;
+}
+.texto{
+    width: 60%;
+    height: auto;
+}
+.acciones{
+    width: 20;
+    height: auto;
+}
+.td-btn-acciones{
+    width: 10%;
+    height: auto;
+}
+</style>
+{% endblock style_block %}
+
+{%block bloque_base%}
 
 
+<h2>Inicio </h2>
+<img src="{{ user.avatar.imagen.url }}" width="50" height="50"/>
+
+<div class="mostrar-tabla">
+    <table class="coder-table">
+        <tbody>
+            <tr>
+                <th class="titulo">
+                    Titulo:
+                </th>
+                <th class="fecha">
+                    Fecha:
+                </th>
+                <th class="texto">
+                    Texto:
+                </th class="acciones">
+            </tr>
+                <tr>
+                    <td class="titulo">
+                        {{articulo.titulo}}
+                    </td>
+                    <td class="fecha">
+                        {{articulo.fecha_publicada|date:"SHORT_DATE_FORMAT"}}
+                    </td>
+                    <td class="texto">
+                        {{articulo.texto}}
+                    </td>
+                    <td class="image">
+                    </td>
+        </tbody>
+    </table>
+    <img src="{{ articulo.imagenesArticulos.imagen.url }}" width="150" height="150"/>
+</div>
+
+{%endblock bloque_base%}

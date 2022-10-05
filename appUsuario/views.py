@@ -121,7 +121,11 @@ def editar_articulo(request, id):
 
 def ver_articulo(request, id):
     articulo = Articulo.objects.get(id=id)
-    return render(request,'appUsuario/ver_articulo.html',{"Publicacion": articulo}) 
+    ver_id = articulo.id
+    
+    
+    return render(request, 'appUsuario/ver_articulo.html',{"ver": ver_id})
+
 
 #LOGIN, LOGOUT Y MAS // Por hacer: que muestre los mensajes y redirija a la principal correctamente ERIK 
 def login_request(request):
