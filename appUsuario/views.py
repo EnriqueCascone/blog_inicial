@@ -117,8 +117,9 @@ def editar_articulo(request, id):
     return render(request,'appUsuario/crear_post_form.html',{"formulario": formulario})
 
 def ver_articulo(request, id):
-    articulo = Articulo.objects.get(id=id)
-    return render(request,'appUsuario/ver_articulo.html',{"Publicacion": articulo}) 
+    articulo = Articulo.objects.get(id=id)    
+    return render(request, 'appUsuario/ver_articulo.html',{"articulo": articulo})
+
 
 #LOGIN, LOGOUT Y MAS // Por hacer: que muestre los mensajes y redirija a la principal correctamente ERIK 
 def login_request(request):

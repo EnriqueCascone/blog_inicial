@@ -65,7 +65,8 @@ h3{
 {%endif%}
 
 <h2>Inicio </h2>
-<img src="{{ user.avatar.imagen.url }}" width="50" height="50"  />
+<img src="{{ user.avatar.imagen.url }}" width="50" height="50"/>
+
 {%if articulos%}
 <div class="mostrar-tabla">
     <table class="coder-table">
@@ -96,7 +97,6 @@ h3{
                         {{articulo.texto}}
                     </td>
                     <td class="image">
-                        {{articulo.image}}
                     </td>
                     {% if user.is_staff %}
                     <td><a class="btn-acciones-articulos" href="{%url 'editar_articulo' articulo.id %}">Editar</a>
